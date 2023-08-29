@@ -5,7 +5,7 @@ import Auth from './Auth';
 function App() {
   const [user, setUser] = useState(null);
 
-  const handleAuthentication = (isAuthenticated, userData) => {
+  const handleAuthentication = (isAuthenticated, userData = null) => {
     if (isAuthenticated) {
       setUser(userData);
     } else {

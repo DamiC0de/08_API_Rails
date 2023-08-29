@@ -2,22 +2,22 @@ import { useState } from 'react';
 import { signUp } from './api';
 import PropTypes from 'prop-types';
 
-const SignUp = (props) => {  // Ajout de "props" ici
+const SignUp = ({ onAuthentication }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     try {
       const response = await signUp({
-        email, 
-        password, 
+        email,
+        password,
         password_confirmation: passwordConfirmation
       });
       console.log('Inscription réussie:', response.data);
-      props.onAuthentication(true); // Utilisation de "props" ici
+      onAuthentication(true, response.data);
     } catch (error) {
       console.error('Une erreur est survenue:', error);
     }
@@ -34,7 +34,8 @@ const SignUp = (props) => {  // Ajout de "props" ici
 };
 
 SignUp.propTypes = {
-  onAuthentication: PropTypes.func.isRequired,  // Ajout de propTypes
+  onAuthentication: PropTypes.func.isRequired,
 };
 
 export default SignUp;
+

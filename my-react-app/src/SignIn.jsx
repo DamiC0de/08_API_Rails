@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { signIn } from './api';
-import PropTypes from 'prop-types'; // Importer PropTypes
+import PropTypes from 'prop-types';
 
-const SignIn = (props) => {  // Ajout de "props" ici
+const SignIn = ({ onAuthentication }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -12,7 +12,7 @@ const SignIn = (props) => {  // Ajout de "props" ici
     try {
       const response = await signIn({ email, password });
       console.log('Connexion réussie:', response.data);
-      props.onAuthentication(true); // Utilisation de "props" ici
+      onAuthentication(true, response.data);
     } catch (error) {
       console.error('Une erreur est survenue:', error);
     }
@@ -28,7 +28,7 @@ const SignIn = (props) => {  // Ajout de "props" ici
 };
 
 SignIn.propTypes = {
-  onAuthentication: PropTypes.func.isRequired,  // Ajout de propTypes
+  onAuthentication: PropTypes.func.isRequired,
 };
 
 export default SignIn;
