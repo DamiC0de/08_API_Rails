@@ -11,10 +11,4 @@ Rails.application.routes.draw do
     resources :articles
   end
 
-  # Pour les routes personnalisées d'authentification, si nécessaire
-  # namespace :api, defaults: { format: :json } do
-  #   post 'login', to: 'auth#login'
-  #   post 'logout', to: 'auth#logout'
-  # end
-
 end
