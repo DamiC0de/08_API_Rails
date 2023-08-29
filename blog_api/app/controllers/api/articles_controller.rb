@@ -17,6 +17,7 @@ class Api::ArticlesController < ApplicationController
   # POST /articles
   def create
     Rails.logger.info "Current User: #{current_user.inspect}"
+    Rails.logger.info "Headers: #{request.headers['Authorization']}"
     @article = current_user.articles.build(article_params)
 
     if @article.save
